@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+class Jsonn extends StatefulWidget {
+  const Jsonn({Key? key}) : super(key: key);
+
+  @override
+  State<Jsonn> createState() => _JsonnState();
+}
+
 class Json {
   late String userId;
   late String id;
@@ -14,6 +21,15 @@ class Json {
     title = json['title'];
     body = json['body'];
   }
+  /* Json({required this.userId, required this.id, required this.title, required this.body});
+  factory Json.fromJson(Map<String, dynamic> json) {
+    return Json(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
+  } */
 }
 
 Future<List<Json>> fetchPost() async {
@@ -27,19 +43,17 @@ Future<List<Json>> fetchPost() async {
 
   if (response.statusCode == 200) {
     jsonRawData = response.body;
+    print('>> $jsonRawData');
     jsonList = jsonDecode(jsonRawData);
+    print('>> $jsonList');
     jsonTransformed = jsonList.map((e) => Json.fromJson(e)).toList();
+    print('>> $jsonTransformed');
+    print('>> ${jsonTransformed.runtimeType}');
 
     return jsonTransformed;
   } else {
     throw Exception('Failed to load post');
   }
-}
-class Jsonn extends StatefulWidget {
-  const Jsonn({Key? key}) : super(key: key);
-
-  @override
-  State<Jsonn> createState() => _JsonnState();
 }
 
 class _JsonnState extends State<Jsonn> {

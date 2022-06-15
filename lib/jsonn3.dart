@@ -51,7 +51,7 @@ class _Jsonn3State extends State<Jsonn3> {
   @override
   void initState() {
     super.initState();
-    requestData();
+    requestData(); // 지금 여기서 비동기 프로그래밍이 시작되는건가?
   }
 
   @override
