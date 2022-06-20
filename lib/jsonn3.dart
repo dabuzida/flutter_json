@@ -15,12 +15,12 @@ class Json {
   late String title;
   late String body;
   // Json({required this.userId, required this.id, required this.title, required this.body});
-  Json.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'].toString();
-    id = json['id'].toString();
-    title = json['title'];
+  Json.fromJson(Map<String, dynamic> json) :
+    userId = json['userId'].toString(),
+    id = json['id'].toString(),
+    title = json['title'],
     body = json['body'];
-  }
+  
 }
 
 class _Jsonn3State extends State<Jsonn3> {
@@ -37,6 +37,10 @@ class _Jsonn3State extends State<Jsonn3> {
       jsonRawData = response.body;
       jsonList = jsonDecode(jsonRawData);
       jsonTransformed = jsonList.map((e) => Json.fromJson(e)).toList();
+
+      print('$jsonRawData');
+      print('${jsonRawData.runtimeType}');
+      // print('$jsonList');
       // print('${jsonRawData.runtimeType} >> $jsonRawData');
       // print('${jsonList.runtimeType} >> $jsonList');
       // print('${jsonTransformed.runtimeType} >> $jsonTransformed');
