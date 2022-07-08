@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
+
 class Jsonn4 extends StatefulWidget {
   const Jsonn4({Key? key}) : super(key: key);
 
@@ -9,18 +11,18 @@ class Jsonn4 extends StatefulWidget {
   State<Jsonn4> createState() => _Jsonn4State();
 }
 
+@JsonSerializable()
 class Json {
   late String userId;
   late String id;
   late String title;
   late String body;
   // Json({required this.userId, required this.id, required this.title, required this.body});
-  Json.fromJson(Map<String, dynamic> json) :
-    userId = json['userId'].toString(),
-    id = json['id'].toString(),
-    title = json['title'],
-    body = json['body'];
-  
+  Json.fromJson(Map<String, dynamic> json)
+      : userId = json['userId'].toString(),
+        id = json['id'].toString(),
+        title = json['title'],
+        body = json['body'];
 }
 
 class _Jsonn4State extends State<Jsonn4> {
