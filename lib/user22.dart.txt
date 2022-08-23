@@ -5,7 +5,7 @@ import 'address.dart';
 /// 이 구문은 `User` 클래스가 생성된 파일의 private 멤버들을
 /// 접근할 수 있도록 해줍니다. 여기에는 *.g.dart 형식이 들어갑니다.
 /// * 에는 소스 파일의 이름이 들어갑니다.
-part 'user.g.dart';
+// part 'user.g.dart';
 
 /// 코드 생성기에 이 클래스가 JSON 직렬화 로직이 만들어져야 한다고 알려주는 어노테이션입니다.
 @JsonSerializable()

@@ -15,12 +15,11 @@ class Json {
   late String title;
   late String body;
   // Json({required this.userId, required this.id, required this.title, required this.body});
-  Json.fromJson(Map<String, dynamic> json) :
-    userId = json['userId'].toString(),
-    id = json['id'].toString(),
-    title = json['title'],
-    body = json['body'];
-  
+  Json.fromJson(Map<String, dynamic> json)
+      : userId = json['userId'].toString(),
+        id = json['id'].toString(),
+        title = json['title'],
+        body = json['body'];
 }
 
 class _Jsonn3State extends State<Jsonn3> {
@@ -31,19 +30,19 @@ class _Jsonn3State extends State<Jsonn3> {
   requestData() async {
     String jsonRawData;
     List jsonList;
-    final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-    await Future.delayed(const Duration(seconds: 1));
-    if (response.statusCode == 200) {
-      jsonRawData = response.body;
+    final res = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    // await Future.delayed(const Duration(seconds: 1));
+    if (res.statusCode == 200) {
+      jsonRawData = res.body;
       jsonList = jsonDecode(jsonRawData);
+      print(jsonList.map((e) => Json.fromJson(e)));
       jsonTransformed = jsonList.map((e) => Json.fromJson(e)).toList();
-
-      print('$jsonRawData');
-      print('${jsonRawData.runtimeType}');
+      // print('$jsonRawData');
+      // print('${jsonRawData.runtimeType}');
       // print('$jsonList');
-      // print('${jsonRawData.runtimeType} >> $jsonRawData');
-      // print('${jsonList.runtimeType} >> $jsonList');
-      // print('${jsonTransformed.runtimeType} >> $jsonTransformed');
+      print('${jsonRawData.runtimeType} >> $jsonRawData');
+      print('${jsonList.runtimeType} >> $jsonList');
+      print('${jsonTransformed.runtimeType} >> $jsonTransformed');
       setState(() {
         flag = true;
       });
@@ -55,7 +54,7 @@ class _Jsonn3State extends State<Jsonn3> {
   @override
   void initState() {
     super.initState();
-    requestData(); // 지금 여기서 비동기 프로그래밍이 시작되는건가?
+    requestData();
   }
 
   @override
